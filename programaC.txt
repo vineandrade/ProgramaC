@@ -1,0 +1,48 @@
+﻿#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+
+void NumUnicos(int v[], int n) {
+    for (int i = 0; i < n; i++) {
+        int r = rand() % 60 + 1; 
+        int dup = 0;
+
+
+
+
+        for (int j = 0; j < i; j++) {
+            if (v[j] == r) {
+                dup = 1;
+                break;}
+        }
+        if (!dup) {
+            v[i] = r;
+        } else {
+            i--; } 
+    }
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (v[i] > v[j]) {
+                int temp = v[i];
+                v[i] = v[j];
+                v[j] = temp;}
+        }
+    }
+}
+    int main() {
+    srand(time(NULL)); 
+
+
+    int num[6];
+    NumUnicos(num, 6);
+
+
+    printf("Sorteio de 6 numeros aleatórios: ");
+    for (int i = 0; i < 6; i++) {
+        printf("%d ", num[i]);
+    }
+
+
+    return 0;
+}
